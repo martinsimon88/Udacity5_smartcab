@@ -6,10 +6,10 @@ from simulator import Simulator
 
 class LearningAgent(Agent):
     """ An agent that learns to drive in the Smartcab world.
-        This is the object you will be modifying. """
+        This is the object you will be modifying. """ 
 
     def __init__(self, env, learning=False, epsilon=1.0, alpha=0.5):
-        super(LearningAgent, self).__init__(env)     # Set the agent in the evironment
+        super(LearningAgent, self).__init__(env)     # Set the agent in the evironment 
         self.planner = RoutePlanner(self.env, self)  # Create a route planner
         self.valid_actions = self.env.valid_actions  # The set of valid actions
 
@@ -34,7 +34,7 @@ class LearningAgent(Agent):
 
         # Select the destination as the new location to route to
         self.planner.route_to(destination)
-
+        
         ########### 
         ## TO DO ##
         ###########
@@ -60,7 +60,7 @@ class LearningAgent(Agent):
             are all features available to the agent. """
 
         # Collect data about the environment
-        waypoint = self.planner.next_waypoint() # The next waypoint
+        waypoint = self.planner.next_waypoint() # The next waypoint 
         inputs = self.env.sense(self)           # Visual input - intersection light and traffic
         deadline = self.env.get_deadline(self)  # Remaining deadline
 
@@ -84,7 +84,7 @@ class LearningAgent(Agent):
         maxQ = max(self.Q[state].values()) # get the value, instead of key
 
 
-        return maxQ
+        return maxQ 
 
 
     def createQ(self, state):
@@ -166,7 +166,7 @@ class LearningAgent(Agent):
         self.learn(state, action, reward)   # Q-learn
 
         return
-
+        
 
 def run():
     """ Driving function for running the simulation. 
@@ -179,7 +179,7 @@ def run():
     #   num_dummies - discrete number of dummy agents in the environment, default is 100
     #   grid_size   - discrete number of intersections (columns, rows), default is (8, 6)
     env = Environment(verbose=True)
-
+        
     ##############
     # Create the driving agent
     # Flags:
@@ -187,7 +187,7 @@ def run():
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
     agent = env.create_agent(LearningAgent, learning=True)
-
+    
     ##############
     # Follow the driving agent
     # Flags:
@@ -201,8 +201,8 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay=0.01, log_metrics=True, optimized=True)
-
+    sim = Simulator(env, update_delay=0.01, log_metrics=True, display=False, optimized=True)
+    
     ##############
     # Run the simulator
     # Flags:
